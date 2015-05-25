@@ -43,7 +43,7 @@ npm install parse-dds --save-dev
 
 [![NPM](https://nodei.co/npm/parse-dds.png)](https://www.npmjs.com/package/parse-dds)
 
-#### `parse(arrayBuffer)`
+#### `dds = parse(arrayBuffer)`
 
 Parses an ArrayBuffer and returns the DDS headers for that file.
 
