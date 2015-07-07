@@ -14,11 +14,11 @@ var FOURCC_DXT1 = fourCCToInt32('DXT1')
 var FOURCC_DXT3 = fourCCToInt32('DXT3')
 var FOURCC_DXT5 = fourCCToInt32('DXT5')
 var FOURCC_DX10 = fourCCToInt32('DX10')
-var FOURCC_FP32F = 116 //DXGI_FORMAT_R32G32B32A32_FLOAT
+var FOURCC_FP32F = 116 // DXGI_FORMAT_R32G32B32A32_FLOAT
 
 var DDSCAPS2_CUBEMAP = 0x200
-var D3D10_RESOURCE_DIMENSION_TEXTURE2D = 3;
-var DXGI_FORMAT_R32G32B32A32_FLOAT = 2;
+var D3D10_RESOURCE_DIMENSION_TEXTURE2D = 3
+var DXGI_FORMAT_R32G32B32A32_FLOAT = 2
 
 // The header length in 32 bit ints
 var headerLengthInt = 31
@@ -67,17 +67,16 @@ function parseHeaders (arrayBuffer) {
       format = 'rgba32f'
       break
     case FOURCC_DX10:
-      var dx10Header = new Uint32Array(arrayBuffer.slice(128, 128 + 20));
-      var format = dx10Header[0];
-      var resourceDimension = dx10Header[1];
-      var miscFlag = dx10Header[2];
-      var arraySize = dx10Header[3];
-      var miscFlags2 = dx10Header[4];
+      var dx10Header = new Uint32Array(arrayBuffer.slice(128, 128 + 20))
+      var format = dx10Header[0]
+      var resourceDimension = dx10Header[1]
+      var miscFlag = dx10Header[2]
+      var arraySize = dx10Header[3]
+      var miscFlags2 = dx10Header[4]
 
       if (resourceDimension == D3D10_RESOURCE_DIMENSION_TEXTURE2D && format == DXGI_FORMAT_R32G32B32A32_FLOAT) {
         format = 'rgba32f'
-      }
-      else {
+      } else {
         throw new Error('Unsupported DX10 texture format ' + format)
       }
       break
@@ -107,21 +106,21 @@ function parseHeaders (arrayBuffer) {
   var dataLength
 
   if (fourCC == FOURCC_DX10) {
-      dataOffset += 20
+    dataOffset += 20
   }
 
   if (cubemap) {
-    for(var f = 0; f < 6; f++) {
+    for (var f = 0; f < 6; f++) {
       if (format != 'rgba32f') {
-          throw new Error('Only RGBA32f cubemaps are supported')
+        throw new Error('Only RGBA32f cubemaps are supported')
       }
-      var bpp =  4 * 32 / 8
+      var bpp = 4 * 32 / 8
 
       width = texWidth
       height = texHeight
 
-      //cubemap should have all mipmap levels defined
-      //Math.log2(width) + 1
+      // cubemap should have all mipmap levels defined
+      // Math.log2(width) + 1
       requiredMipLevels = Math.log(width) / Math.log(2) + 1
 
       for (var i = 0; i < requiredMipLevels; i++) {
@@ -131,17 +130,16 @@ function parseHeaders (arrayBuffer) {
           length: dataLength,
           shape: [ width, height ]
         })
-        //Reuse data from the previous level if we are beyond mipmapCount
-        //This is hack for CMFT not publishing full mipmap chain https://github.com/dariomanesku/cmft/issues/10
+        // Reuse data from the previous level if we are beyond mipmapCount
+        // This is hack for CMFT not publishing full mipmap chain https://github.com/dariomanesku/cmft/issues/10
         if (i < mipmapCount) {
-            dataOffset += dataLength
+          dataOffset += dataLength
         }
         width = Math.floor(width / 2)
         height = Math.floor(height / 2)
       }
     }
-  }
-  else {
+  } else {
     for (var i = 0; i < mipmapCount; i++) {
       dataLength = Math.max(4, width) / 4 * Math.max(4, height) / 4 * blockBytes
 
