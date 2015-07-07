@@ -131,7 +131,8 @@ function parseHeaders (arrayBuffer) {
           length: dataLength,
           shape: [ width, height ]
         })
-        //reuse data from the previous level if we are beyond mipmapCount
+        //Reuse data from the previous level if we are beyond mipmapCount
+        //This is hack for CMFT not publishing full mipmap chain https://github.com/dariomanesku/cmft/issues/10
         if (i < mipmapCount) {
             dataOffset += dataLength
         }
