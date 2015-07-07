@@ -54,7 +54,7 @@ The returned values:
 - `flags` the DDS bit flags stored in the file
 - `format` a string, either `'dxt1'`, `'dxt3'`, `'dxt5'` or `'rgba32f'`
 - `images` a list of information to extract sub-arrays for each mipmap level
-- `cubemap` a boolean indicating whether the file contained a cubemap image
+- `cubemap` a boolean indicating whether the file contains a cubemap image
 
 Each image has the form:
 
