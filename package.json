@@ -1,6 +1,6 @@
 {
   "name": "parse-dds",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "parses the headers of a DDS texture file",
   "main": "index.js",
   "license": "MIT",
