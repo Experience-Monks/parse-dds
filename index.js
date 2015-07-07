@@ -158,7 +158,8 @@ function parseHeaders (arrayBuffer) {
     shape: [ texWidth, texHeight ],
     images: images,
     format: format,
-    flags: flags
+    flags: flags,
+    cubemap: cubemap
   }
 }
 

@@ -52,7 +52,7 @@ The returned values:
 
 - `shape` an array representing the `[ width, height ]` of the texture
 - `flags` the DDS bit flags stored in the file
-- `format` a string, either `'dxt1'`, `'dxt3'`, `'dxt5'`, `'rgb32f'` or `'rgba32f'`
+- `format` a string, either `'dxt1'`, `'dxt3'`, `'dxt5'` or `'rgba32f'`
 - `images` a list of information to extract sub-arrays for each mipmap level
 
 Each image has the form:
@@ -62,6 +62,7 @@ Each image has the form:
   shape: [ width, height ], // size of this mipmap level
   offset: x,                // byte offset into the input buffer
   length: len,              // length of this mipmap level image data
+  cubemap: false            // (Boolean) whether the file is a cubemap
 }
 ```
 
