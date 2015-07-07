@@ -11,6 +11,7 @@ Currently this only supports a limited range of common DDS formats:
 - DXT1 (RGB)
 - DXT3 (RGBA)
 - DXT5 (RGBA)
+- Cubemaps (RGBA32f) - like those from [cmft](https://github.com/dariomanesku/cmft) and [Modified AMD Cubemapgen](https://seblagarde.wordpress.com/2012/06/10/amd-cubemapgen-for-physically-based-rendering/)
 
 See [test/index.js](test/index.js) for an example in Node, or [demo/index.js](demo/index.js) for a WebGL compressed texture example.
 
@@ -51,7 +52,7 @@ The returned values:
 
 - `shape` an array representing the `[ width, height ]` of the texture
 - `flags` the DDS bit flags stored in the file
-- `format` a string, either `'dxt1'`, `'dxt3'` or `'dxt5'`
+- `format` a string, either `'dxt1'`, `'dxt3'`, `'dxt5'`, `'rgb32f'` or `'rgba32f'`
 - `images` a list of information to extract sub-arrays for each mipmap level
 
 Each image has the form:
