@@ -121,7 +121,7 @@ function parseHeaders (arrayBuffer) {
       height = texHeight
 
       //cubemap should have all mipmap levels defined
-      //Math.log2(width)
+      //Math.log2(width) + 1
       requiredMipLevels = Math.log(width) / Math.log(2) + 1
 
       for (var i = 0; i < requiredMipLevels; i++) {
