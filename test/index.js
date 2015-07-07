@@ -33,13 +33,12 @@ test('should parse DDS headers', function (t) {
 
 test('should parse DDS headers', function (t) {
   var data = fs.readFileSync(path.join(__dirname, 'fixtures', 'test-cube-dx10-rgba32f.dds'))
-  // var data = fs.readFileSync(path.join(__dirname, 'fixtures', 'ForestReflection.dds'))
   var array = toArrayBuffer(data)
   var result = parse(array)
   var numMipmaps = 8 // log2(128)
   t.deepEqual(result.shape, [ 128, 128 ], 'size is correct')
   t.deepEqual(result.format, 'rgba32f', 'internal format is correct')
-  t.deepEqual(result.images.length, 6 * 8, 'num mipmaps is correct')
+  t.deepEqual(result.images.length, 6 * numMipmaps, 'num mipmaps is correct')
   t.deepEqual(result.images[0].shape, [ 128, 128 ])
   t.deepEqual(result.images[1].shape, [ 64, 64 ])
   t.deepEqual(result.images[2].shape, [ 32, 32 ])
