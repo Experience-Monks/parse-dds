@@ -66,6 +66,10 @@ Each image has the form:
 }
 ```
 
+## See Also
+
+- [preview-dds](https://github.com/Jam3/preview-dds) for loading and previewing DDS files
+
 ## License
 
 MIT, see [LICENSE.md](http://github.com/Jam3/parse-dds/blob/master/LICENSE.md) for details.
